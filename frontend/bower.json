@@ -1,0 +1,10 @@
+{
+  "name": "lavabox",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "modernizr": "~2.8.2",
+    "bootstrap": "~3.3.2",
+    "backbone": "~1.1.2"
+  }
+}
