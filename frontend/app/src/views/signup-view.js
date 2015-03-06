@@ -10,11 +10,11 @@ var Lavabox = Lavabox || {
     adapters: {}
 };
 
-Lavabox.views.LoginView = Backbone.View.extend({
+Lavabox.views.SignupView = Backbone.View.extend({
 
     el: 'body',
 
-    loginTemplate: this["JST"]["app/src/templates/login.ejs"],
+    signupTemplate: this["JST"]["app/src/templates/signup.ejs"],
 
     events: {
         'click #signup_link': 'createOnEnter'
@@ -26,11 +26,11 @@ Lavabox.views.LoginView = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html((this.loginTemplate()));
+        this.$el.html((this.signupTemplate()));
         return this;
     },
 
     createOnEnter: function (argument) {
-        Lavabox.routers.LavaboxRouter.navigate("newUser", {trigger: true});
+        alert('Hago click');
     }
 });

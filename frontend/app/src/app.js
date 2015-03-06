@@ -5,6 +5,7 @@ var Lavabox = Lavabox || {
     models: {},
     routers: {},
     utils: {},
+    lib: {},
     adapters: {}
 };
 var ENTER_KEY = 13;

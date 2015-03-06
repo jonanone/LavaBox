@@ -41,6 +41,15 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
+      jst: {
+        files: [
+            '<%= config.app %>/src/templates/*.ejs'
+        ],
+        tasks: ['jst'],
+        options: {
+          livereload: true
+        }
+      },
       jstest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['test:watch']
@@ -187,6 +196,14 @@ module.exports = function (grunt) {
           src: '{,*/}*.css',
           dest: '.tmp/styles/'
         }]
+      }
+    },
+
+    jst: {
+      compile: {
+        files: {
+          '.tmp/src/templates.js': ['<%= config.app %>/src/templates/*.ejs']
+        }
       }
     },
 
@@ -375,6 +392,10 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('createDefaultTemplate', function () {
+    grunt.file.write('.tmp/src/templates.js', 'this.JST = this.JST || {};');
+  });
+
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {
@@ -386,6 +407,8 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'createDefaultTemplate',
+      'jst',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -416,6 +439,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'createDefaultTemplate',
+    'jst',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
