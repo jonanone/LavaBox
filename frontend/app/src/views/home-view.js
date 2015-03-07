@@ -39,15 +39,19 @@ Lavabox.views.HomeView = Backbone.View.extend({
             fileToLoad = new Lavabox.models.File({
                 'url': '/'
             });
+
+            // Tricky code!!! Just fo testing purpose!!! Uncomment to clean app's workflow
+            /*
             var filesCollection = new Lavabox.collections.Files;
             for (var i = 0; i < 5; i++) {
                 var model = new Lavabox.models.File({'name': 'ander', 'type': 'directory'});
                 filesCollection.add(model);
             };
             fileToLoad.set('files', filesCollection);
+            */
+            // End fo tricky code
         }
-        this.fileView = this.fileView || new Lavabox.views.FileView();
-        this.fileView.model = fileToLoad;
+        this.fileView = this.fileView || new Lavabox.views.FileView({model: fileToLoad});
         this.fileView.render();
     }
 });
